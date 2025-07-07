@@ -11,9 +11,9 @@ const Login = () => {
                         className='text-white w-[100px] h-[100px] md:w-[220px] md:h-[220px] text-center font-extrabold'
                     />
                 </div>
-                <div className='flex justify-center mt-[50px] md:mt-[40px]'>
-                    <div className='bg-white rounded-t-4xl h-[637px] w-full px-8 py-6 md:py-8 md:rounded-4xl 
-                        md:h-[570px] md:w-[500px]'
+                <div className='flex justify-center mt-[50px] md:mt-[90px]'>
+                    <div className='bg-white rounded-t-4xl h-[530px] w-full px-8 py-8 md:py-6 md:rounded-4xl 
+                        md:h-[470px] md:w-[500px]'
                     >
                         <h1 className='text-[30px] text-center font-bold'>
                             Login
@@ -48,7 +48,7 @@ const Login = () => {
                             />
                         </div>
                         <div className='mt-10 flex justify-center'>
-                            <button className='bg-blue-800 rounded-4xl w-[360px] h-[43px]'>
+                            <button className='bg-blue-950 rounded-4xl w-[360px] md:w-[200px] h-[43px]'>
                                 <p className='font-semibold text-[18px] text-white'>
                                     Login
                                 </p>
@@ -56,7 +56,7 @@ const Login = () => {
                         </div>
                         <p className='text-center mt-4'>
                             Belum punya akun?
-                            <span className='ml-1 text-blue-800 font-semibold'>
+                            <span className='ml-1 text-blue-950 font-semibold'>
                                 <Link to={`/register`}>
                                     Daftar
                                 </Link>
