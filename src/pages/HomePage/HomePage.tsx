@@ -1,7 +1,7 @@
 import React from 'react'
 import Navbar from '../../components/Navbar';
 import ProductCard from '../../components/ProductCard';
-import Carousel from '../../components/Carousel';
+import CarouselSwiper from '../../components/Carousel';
 import { Link } from 'react-router-dom';
 
 const HomePage = () => {
@@ -67,7 +67,7 @@ const HomePage = () => {
         <div className='bg-white'>
             <Navbar />
             <div className='pt-14 md:pt-6 px-8'>
-                <Carousel />
+                <CarouselSwiper />
             </div>
             <h1 className='text-[30px] text-blue-950 text-center font-extrabold pt-[30px]'>
                 Rekomendasi Produk
