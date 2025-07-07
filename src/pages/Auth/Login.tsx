@@ -48,11 +48,13 @@ const Login = () => {
                             />
                         </div>
                         <div className='mt-10 flex justify-center'>
-                            <button className='bg-blue-950 rounded-4xl w-[360px] md:w-[200px] h-[43px]'>
-                                <p className='font-semibold text-[18px] text-white'>
-                                    Login
-                                </p>
-                            </button>
+                            <Link to={'/homepage'}>
+                                <button className='bg-blue-950 rounded-4xl w-[360px] md:w-[200px] h-[43px]'>
+                                    <p className='font-semibold text-[18px] text-white'>
+                                        Login
+                                    </p>
+                                </button>
+                            </Link>
                         </div>
                         <p className='text-center mt-4'>
                             Belum punya akun?
