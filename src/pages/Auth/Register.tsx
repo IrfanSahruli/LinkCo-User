@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Register = () => {
     return (
-        <div className='bg-blue-950 min-h-screen'>
+        <div className='bg-blue-950 h-full md:min-h-screen'>
             <div className='grid grid-cols-1 md:grid-cols-2'>
                 <div className='flex justify-center pt-10 px-4 md:py-[210px]'>
                     <img
