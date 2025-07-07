@@ -7,48 +7,56 @@ import { Link } from 'react-router-dom';
 const HomePage = () => {
     const data = [
         {
+            id: 2,
             name: 'Kopi Gayo Aceh',
             description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
             price: 85000,
             image: 'kopigayo.jpg',
         },
         {
+            id: 2,
             name: 'Kopi Gayo Aceh',
             description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
             price: 85000,
             image: 'kopigayo.jpg',
         },
         {
+            id: 2,
             name: 'Kopi Gayo Aceh',
             description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
             price: 85000,
             image: 'kopigayo.jpg',
         },
         {
+            id: 2,
             name: 'Kopi Gayo Aceh',
             description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
             price: 85000,
             image: 'kopigayo.jpg',
         },
         {
+            id: 2,
             name: 'Kopi Gayo Aceh',
             description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
             price: 85000,
             image: 'kopigayo.jpg',
         },
         {
+            id: 2,
             name: 'Kopi Gayo Aceh',
             description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
             price: 85000,
             image: 'kopigayo.jpg',
         },
         {
+            id: 2,
             name: 'Kopi Gayo Aceh',
             description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
             price: 85000,
             image: 'kopigayo.jpg',
         },
         {
+            id: 2,
             name: 'Kopi Gayo Aceh',
             description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
             price: 85000,

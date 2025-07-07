@@ -10,7 +10,7 @@ const Navbar = () => {
         <div className='bg-blue-950 px-8 md:px-12 py-4 md:py-1 fixed w-full z-10'>
             <div className='max-w-7xl flex items-center justify-between'>
                 <img
-                    src='LogoLinkCo.png'
+                    src='/LogoLinkCo.png'
                     className='w-[50px] h-[50px] text-white font-bold'
                 />
                 <button

@@ -9,7 +9,7 @@ const images = ['kopigayo.jpg', 'kopigayo.jpg', 'kopigayo.jpg'];
 
 const CarouselSwiper = () => {
     return (
-        <div className="relative w-full md:w-[1250px] mx-auto mt-10 rounded-2xl overflow-hidden">
+        <div className="relative w-full md:w-[1250px] mx-auto mt-10 md:mt-12 rounded-2xl overflow-hidden">
             <Swiper
                 modules={[Pagination, Autoplay]}
                 pagination={{ clickable: true }}
@@ -23,7 +23,7 @@ const CarouselSwiper = () => {
                         <img
                             src={img}
                             alt={`Slide ${index}`}
-                            className="w-full h-200px md:h-[300px] object-cover"
+                            className="w-full h-[200px] md:h-[500px] object-cover"
                         />
                     </SwiperSlide>
                 ))}

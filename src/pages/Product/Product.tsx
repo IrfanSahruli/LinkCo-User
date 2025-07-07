@@ -5,48 +5,56 @@ import ProductCard from '../../components/ProductCard';
 const Product = () => {
     const data = [
         {
+            id: 3,
             name: 'Kopi Gayo Aceh',
             description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
             price: 85000,
             image: 'kopigayo.jpg',
         },
         {
+            id: 3,
             name: 'Kopi Gayo Aceh',
             description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
             price: 85000,
             image: 'kopigayo.jpg',
         },
         {
+            id: 3,
             name: 'Kopi Gayo Aceh',
             description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
             price: 85000,
             image: 'kopigayo.jpg',
         },
         {
+            id: 3,
             name: 'Kopi Gayo Aceh',
             description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
             price: 85000,
             image: 'kopigayo.jpg',
         },
         {
+            id: 3,
             name: 'Kopi Gayo Aceh',
             description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
             price: 85000,
             image: 'kopigayo.jpg',
         },
         {
+            id: 3,
             name: 'Kopi Gayo Aceh',
             description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
             price: 85000,
             image: 'kopigayo.jpg',
         },
         {
+            id: 3,
             name: 'Kopi Gayo Aceh',
             description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
             price: 85000,
             image: 'kopigayo.jpg',
         },
         {
+            id: 3,
             name: 'Kopi Gayo Aceh',
             description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
             price: 85000,
