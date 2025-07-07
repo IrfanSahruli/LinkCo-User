@@ -18,7 +18,7 @@ const Login = () => {
                         <h1 className='text-[30px] text-center font-bold'>
                             Login
                         </h1>
-                        <p className='text-[18px] text-center text-gray-600 mt-6'>
+                        <p className='text-[18px] text-center text-gray-600 mt-1'>
                             Selamat datang di LinkCo
                         </p>
                         <div className='flex flex-col mt-10'>
@@ -31,7 +31,7 @@ const Login = () => {
                             <input
                                 type="text"
                                 placeholder='Email...'
-                                className='rounded-4xl border h-[40px] px-6 text-[23px]'
+                                className='rounded-4xl border h-[50px] px-6 text-[18px]'
                             />
                         </div>
                         <div className='flex flex-col mt-4'>
@@ -44,11 +44,11 @@ const Login = () => {
                             <input
                                 type="text"
                                 placeholder='Password...'
-                                className='rounded-4xl border h-[40px] px-6 text-[23px]'
+                                className='rounded-4xl border h-[50px] px-6 text-[18px]'
                             />
                         </div>
                         <div className='mt-10 flex justify-center'>
-                            <button className='bg-blue-800 rounded-4xl w-[360px] py-3'>
+                            <button className='bg-blue-800 rounded-4xl w-[360px] h-[43px]'>
                                 <p className='font-semibold text-[18px] text-white'>
                                     Login
                                 </p>
