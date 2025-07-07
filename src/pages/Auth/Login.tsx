@@ -5,10 +5,10 @@ const Login = () => {
     return (
         <div className='bg-blue-950 min-h-screen'>
             <div className='grid grid-cols-1 md:grid-cols-2'>
-                <div className='flex justify-center pt-14 px-4 py-2 md:py-[220px]'>
+                <div className='flex justify-center pt-10 px-4 md:py-[220px]'>
                     <img
                         src='LogoLinkCo.png'
-                        className='text-white w-[80px] h-[80px] md:w-[220px] md:h-[220px] text-center font-extrabold'
+                        className='text-white w-[100px] h-[100px] md:w-[220px] md:h-[220px] text-center font-extrabold'
                     />
                 </div>
                 <div className='flex justify-center mt-[50px] md:mt-[40px]'>
