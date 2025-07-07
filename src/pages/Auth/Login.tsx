@@ -1,7 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        try {
+            navigate('/homepage')
+        } catch (error) {
+            console.error(`Error: ${error}`);
+        }
+    };
+
     return (
         <div className='bg-blue-950 h-full md:min-h-screen'>
             <div className='grid grid-cols-1 md:grid-cols-2'>
@@ -48,13 +58,14 @@ const Login = () => {
                             />
                         </div>
                         <div className='mt-10 flex justify-center'>
-                            <Link to={'/homepage'}>
-                                <button className='bg-blue-950 rounded-4xl w-[360px] md:w-[200px] h-[43px]'>
-                                    <p className='font-semibold text-[18px] text-white'>
-                                        Login
-                                    </p>
-                                </button>
-                            </Link>
+                            <button
+                                onClick={handleClick}
+                                className='bg-blue-950 rounded-4xl w-[360px] md:w-[200px] h-[43px]'
+                            >
+                                <p className='font-semibold text-[18px] text-white'>
+                                    Login
+                                </p>
+                            </button>
                         </div>
                         <p className='text-center mt-4'>
                             Belum punya akun?
