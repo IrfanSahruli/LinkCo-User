@@ -34,7 +34,7 @@ const Login = () => {
                                 className='rounded-4xl border h-[50px] px-6 text-[23px]'
                             />
                         </div>
-                        {/* <div className='flex flex-col mt-4'>
+                        <div className='flex flex-col mt-4'>
                             <label
                                 htmlFor="password"
                                 className='text-[20px] font-semibold'
@@ -46,7 +46,7 @@ const Login = () => {
                                 placeholder='Password...'
                                 className='rounded-4xl border h-[50px] px-6 text-[23px]'
                             />
-                        </div> */}
+                        </div>
                         <div className='mt-10 flex justify-center'>
                             <button className='bg-blue-800 rounded-4xl w-[360px] py-3'>
                                 <p className='font-semibold text-[23px] text-white'>
