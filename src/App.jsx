@@ -17,10 +17,18 @@ function App() {
             path='/'
             element={
               <>
-                <Login />
+                <HomePage />
               </>
             }
           />  
+          <Route
+            path='/login'
+            element={
+              <>
+                <Login />
+              </>
+            }
+          />
           <Route
             path='/register'
             element={
@@ -34,14 +42,6 @@ function App() {
             element={
               <>
                 <Password />
-              </>
-            }
-          />
-          <Route
-            path='/homepage'
-            element={
-              <>
-                <HomePage />
               </>
             }
           />
