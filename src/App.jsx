@@ -6,6 +6,7 @@ import Register from './pages/Auth/Register';
 import HomePage from './pages/HomePage/HomePage';
 import Product from './pages/Product/Product';
 import DetailProduct from './pages/Product/[id]/DetailProduct';
+import Profile from './pages/Profile/Profile';
 
 function App() {
   return (
@@ -57,6 +58,14 @@ function App() {
             element={
               <>
                 <DetailProduct />
+              </>
+            }
+          />
+          <Route
+            path='/profile'
+            element={
+              <>
+                <Profile />
               </>
             }
           />
