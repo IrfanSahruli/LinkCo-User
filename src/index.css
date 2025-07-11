@@ -2,9 +2,11 @@
 
 //Custom dots carousel
 .swiper-pagination-bullet {
-  @apply bg-white opacity-70; /* Warna dasar bullet */
+  @apply bg-white opacity-70;
+  /* Warna dasar bullet */
 }
 
 .swiper-pagination-bullet-active {
-  @apply bg-red-500 opacity-100; /* Bullet aktif */
+  @apply bg-red-500 opacity-100;
+  /* Bullet aktif */
 }
