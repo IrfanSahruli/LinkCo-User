@@ -2,8 +2,9 @@ export interface User {
     id?: number;
     name?: string;
     email?: string;
-    noHandPhone?: number;
+    noHandPhone?: number | string;
     password?: string;
-    saldo?: number
+    referralCode?: string;
+    saldo?: number;
     role?: string;
 };

@@ -27,11 +27,14 @@ const Login = () => {
             );
 
             console.log(res);
-            alert('Login berhasil');
+            alert(res.data.message);
             navigate('/');
         } catch (error) {
             if (isAxiosError(error)) {
-                alert(`Login gagal: ${error.response?.data}`);
+                const message = error.response?.data?.message || 'Terjadi kesalahan saat login';
+                alert(`Login gagal: ${message}`);
+            } else {
+                alert('Terjadi kesalahan tak terduga');
             }
         }
     };
@@ -71,7 +74,7 @@ const Login = () => {
                                 className='rounded-4xl border h-[50px] px-6 text-[18px]'
                             />
                         </div>
-                        <div className='flex flex-col mt-4'>
+                        <div className='flex flex-col mt-4 relative'>
                             <label
                                 htmlFor="password"
                                 className='text-[18px] font-semibold'
@@ -84,8 +87,14 @@ const Login = () => {
                                 value={user.password}
                                 onChange={handleChange}
                                 placeholder='Password...'
-                                className='rounded-4xl border h-[50px] px-6 text-[18px]'
+                                className='rounded-4xl border h-[50px] px-6 text-[18px] pr-12'
                             />
+                            <div
+                                className="absolute right-4 top-[42px] cursor-pointer"
+                                onClick={() => setShowPassword((prev) => !prev)}
+                            >
+                                {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+                            </div>
                         </div>
                         <div className='mt-10 flex justify-center'>
                             <button

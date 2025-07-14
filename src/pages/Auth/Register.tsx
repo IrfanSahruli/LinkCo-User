@@ -1,7 +1,33 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import { User } from '../../types/User';
+import { saveUserData } from '../../utils/storage';
 
 const Register = () => {
+    const navigate = useNavigate();
+    const [user, setUser] = useState<User>({
+        name: '',
+        email: '',
+        noHandPhone: '',
+        referralCode: ''
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setUser((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleRegister = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        try {
+            await saveUserData(user);
+            navigate('/password')
+        } catch (error) {
+            console.error(`Error: ${error}`);
+        }
+    };
+
     return (
         <div className='bg-blue-950 h-full md:min-h-screen'>
             <div className='grid grid-cols-1 md:grid-cols-2'>
@@ -30,6 +56,9 @@ const Register = () => {
                             </label>
                             <input
                                 type="text"
+                                name='name'
+                                value={user.name}
+                                onChange={handleChange}
                                 placeholder='Nama...'
                                 className='rounded-4xl border h-[50px] px-6 text-[18px]'
                             />
@@ -43,20 +72,26 @@ const Register = () => {
                             </label>
                             <input
                                 type="email"
+                                name='email'
+                                value={user.email}
+                                onChange={handleChange}
                                 placeholder='Email...'
                                 className='rounded-4xl border h-[50px] px-6 text-[18px]'
                             />
                         </div>
                         <div className='flex flex-col mt-4'>
                             <label
-                                htmlFor="noHp"
+                                htmlFor="noHandPhone"
                                 className='text-[18px] font-semibold'
                             >
                                 Nomor HandPhone
                             </label>
                             <input
-                                type="number"
-                                placeholder='Nomor HandPhone...'
+                                type="text"
+                                name="noHandPhone"
+                                value={user.noHandPhone}
+                                onChange={handleChange}
+                                placeholder='Contoh: 089652739073'
                                 className='rounded-4xl border h-[50px] px-6 text-[18px]'
                             />
                         </div>
@@ -65,19 +100,24 @@ const Register = () => {
                                 htmlFor="referral"
                                 className='text-[18px] font-semibold'
                             >
-                                Kode Referral (jika ada)
+                                Kode Referral (opsional)
                             </label>
                             <input
                                 type="text"
+                                name='referralCode'
+                                value={user.referralCode}
+                                onChange={handleChange}
                                 placeholder='Kode referral...'
                                 className='rounded-4xl border h-[50px] px-6 text-[18px]'
                             />
                         </div>
                         <div className='mt-10 flex justify-center'>
-                            <button className='bg-blue-950 rounded-4xl w-[360px] md:w-[200px] h-[43px]'>
-                                <p className='font-semibold text-[18px] text-white'>
-                                    Register
-                                </p>
+                            <button
+                                onClick={handleRegister}
+                                className='bg-blue-950 rounded-4xl w-[360px] md:w-[200px] h-[43px] font-semibold 
+                                    text-[18px] text-white'
+                            >
+                                Register
                             </button>
                         </div>
                         <p className='text-center mt-4 mb-16'>
