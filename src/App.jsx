@@ -4,9 +4,11 @@ import Login from './pages/Auth/Login';
 import Password from './pages/Auth/Password';
 import Register from './pages/Auth/Register';
 import HomePage from './pages/HomePage/HomePage';
-import Product from './pages/Product/Product';
 import DetailProduct from './pages/Product/[id]/DetailProduct';
 import Profile from './pages/Profile/Profile';
+import Kyc from './pages/KnowYourCustomer/Kyc';
+import ProductList from './pages/Product/Product';
+import Order from './pages/Order/Order';
 
 function App() {
   return (
@@ -46,10 +48,18 @@ function App() {
             }
           />
           <Route
+            path='/kyc'
+            element={
+              <>
+                <Kyc />
+              </>
+            }
+          />
+          <Route
             path='/product'
             element={
               <>
-                <Product />
+                <ProductList />
               </>
             }
           />
@@ -58,6 +68,14 @@ function App() {
             element={
               <>
                 <DetailProduct />
+              </>
+            }
+          />
+          <Route
+            path='/order'
+            element={
+              <>
+                <Order />
               </>
             }
           />

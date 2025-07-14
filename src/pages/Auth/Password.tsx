@@ -30,7 +30,7 @@ const Password = () => {
         }
 
         try {
-            const res = await axios.post(`${import.meta.env.VITE_PUBLIC_URL}/register`,
+            const res = await axios.post(`${import.meta.env.VITE_PUBLIC_URL}/api/register`,
                 payload,
                 { withCredentials: true }
             );

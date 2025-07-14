@@ -1,80 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../components/Navbar';
 import ProductCard from '../../components/ProductCard';
 import CarouselSwiper from '../../components/Carousel';
 import { Link } from 'react-router-dom';
+import { Product } from '../../types/Product';
+import axios, { isAxiosError } from 'axios';
 
 const HomePage = () => {
-    const data = [
-        {
-            id: 2,
-            name: 'Kopi Gayo Aceh',
-            description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
-            price: 85000,
-            image: 'kopigayo.jpg',
-        },
-        {
-            id: 2,
-            name: 'Kopi Gayo Aceh',
-            description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
-            price: 85000,
-            image: 'kopigayo.jpg',
-        },
-        {
-            id: 2,
-            name: 'Kopi Gayo Aceh',
-            description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
-            price: 85000,
-            image: 'kopigayo.jpg',
-        },
-        {
-            id: 2,
-            name: 'Kopi Gayo Aceh',
-            description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
-            price: 85000,
-            image: 'kopigayo.jpg',
-        },
-        {
-            id: 2,
-            name: 'Kopi Gayo Aceh',
-            description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
-            price: 85000,
-            image: 'kopigayo.jpg',
-        },
-        {
-            id: 2,
-            name: 'Kopi Gayo Aceh',
-            description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
-            price: 85000,
-            image: 'kopigayo.jpg',
-        },
-        {
-            id: 2,
-            name: 'Kopi Gayo Aceh',
-            description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
-            price: 85000,
-            image: 'kopigayo.jpg',
-        },
-        {
-            id: 2,
-            name: 'Kopi Gayo Aceh',
-            description: 'Kopi khas Gayo dengan aroma harum dan rasa kuat, cocok untuk penikmat kopi sejati.',
-            price: 85000,
-            image: 'kopigayo.jpg',
-        },
-    ];
+    const [products, setProducts] = useState<Product[]>([]);
 
-    const imageList = [
-        'kopigayo.jpg',
-        'kopigayo.jpg',
-        'kopigayo.jpg',
-        'kopigayo.jpg',
-    ]
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const res = await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/api/getAllProduct`);
+                console.log(res);
+                setProducts(res.data.data);
+            } catch (error) {
+                if (isAxiosError(error)) {
+                    console.error(`Error: ${error.response?.data}`);
+                }
+            }
+        };
+
+        fetchProducts();
+    }, []);
 
     return (
         <div className='bg-white'>
             <Navbar />
-            <div className='pt-14 md:pt-6 px-8'>
+            <div className='pt-16 md:pt-6 px-8'>
                 <CarouselSwiper />
             </div>
             <h1 className='text-[30px] text-blue-950 text-center font-extrabold pt-[30px]'>
@@ -83,7 +37,7 @@ const HomePage = () => {
             <div className='grid grid-cols-1 justify-items-center md:grid-cols-4 px-8 py-6 md:px-12 gap-x-4 
                 gap-y-6'
             >
-                {data.map((product, index) => (
+                {products.map((product, index) => (
                     <ProductCard key={index} product={product} />
                 ))}
                 <div className='col-span-full justify-self-center mt-4'>
