@@ -1,14 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import { User } from '../../types/User';
+import axios, { isAxiosError } from 'axios';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
     const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
+    const [user, setUser] = useState<User>({
+        email: '',
+        password: ''
+    });
 
-    const handleClick = () => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setUser((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleLogin = async (e: React.FormEvent) => {
+        e.preventDefault();
+
         try {
-            navigate('/homepage')
+            const res = await axios.post(`${import.meta.env.VITE_PUBLIC_URL}/login`,
+                user,
+                { withCredentials: true }
+            );
+
+            console.log(res);
+            alert('Login berhasil');
+            navigate('/');
         } catch (error) {
-            console.error(`Error: ${error}`);
+            if (isAxiosError(error)) {
+                alert('Login gagal');
+                console.error(error.response?.data);
+            }
         }
     };
 
@@ -40,6 +65,9 @@ const Login = () => {
                             </label>
                             <input
                                 type="text"
+                                name='email'
+                                value={user.email}
+                                onChange={handleChange}
                                 placeholder='Email...'
                                 className='rounded-4xl border h-[50px] px-6 text-[18px]'
                             />
@@ -52,14 +80,17 @@ const Login = () => {
                                 Password
                             </label>
                             <input
-                                type="text"
+                                type={showPassword ? "text" : "password"}
+                                name='password'
+                                value={user.password}
+                                onChange={handleChange}
                                 placeholder='Password...'
                                 className='rounded-4xl border h-[50px] px-6 text-[18px]'
                             />
                         </div>
                         <div className='mt-10 flex justify-center'>
                             <button
-                                onClick={handleClick}
+                                onClick={handleLogin}
                                 className='bg-blue-950 rounded-4xl w-[360px] md:w-[200px] h-[43px]'
                             >
                                 <p className='font-semibold text-[18px] text-white'>
