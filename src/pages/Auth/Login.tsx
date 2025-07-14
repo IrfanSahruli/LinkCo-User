@@ -31,8 +31,7 @@ const Login = () => {
             navigate('/');
         } catch (error) {
             if (isAxiosError(error)) {
-                alert('Login gagal');
-                console.error(error.response?.data);
+                alert(`Login gagal: ${error.response?.data}`);
             }
         }
     };
