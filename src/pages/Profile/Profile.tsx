@@ -3,6 +3,7 @@ import { FiUser, FiCopy, FiUpload } from 'react-icons/fi';
 import Navbar from '../../components/Navbar';
 import { User } from '../../types/User';
 import axios, { isAxiosError } from 'axios';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
     const [user, setUser] = useState<User>();
@@ -39,7 +40,17 @@ const Profile = () => {
                                 <h3 className="text-xl font-bold">{user?.name}</h3>
                                 <p className="text-base text-gray-800">{user?.email}</p>
                                 <p className="text-base text-gray-800">{user?.noHandPhone}</p>
-
+                                {user?.isKYCApproved ? (
+                                    <p className="text-green-600 font-semibold">
+                                        Data diri telah diverifikasi
+                                    </p>
+                                ) : (
+                                    <Link to={'/kycdata'}>
+                                        <button className="text-red-500 hover:underline">
+                                            Verifikasi Data Diri
+                                        </button>
+                                    </Link>
+                                )}
                                 <div className="flex items-center justify-between mt-3">
                                     <div className="flex items-center border border-gray-500 rounded-lg px-3 py-1 gap-5">
                                         <div>

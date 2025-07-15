@@ -7,6 +7,8 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 const Login = () => {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
     const [user, setUser] = useState<User>({
         email: '',
         password: ''
@@ -26,15 +28,17 @@ const Login = () => {
                 { withCredentials: true }
             );
 
-            console.log(res);
-            alert(res.data.message);
+            setMessage(res.data.message);
+            setMessageType('success');
             navigate('/');
         } catch (error) {
             if (isAxiosError(error)) {
-                const message = error.response?.data?.message || 'Terjadi kesalahan saat login';
-                alert(`Login gagal: ${message}`);
+                const msg = error.response?.data?.message || 'Terjadi kesalahan saat login';
+                setMessage(msg);
+                setMessageType('error');
             } else {
-                alert('Terjadi kesalahan tak terduga');
+                setMessage('Terjadi kesalahan tak terduga');
+                setMessageType('error');
             }
         }
     };
@@ -52,6 +56,15 @@ const Login = () => {
                     <div className='bg-white rounded-t-4xl h-[530px] w-full px-8 py-8 md:py-6 md:rounded-4xl 
                         md:h-[470px] md:w-[500px]'
                     >
+                        {message && (
+                            <div
+                                className={`text-sm mb-4 px-4 py-2 rounded-lg font-medium ${messageType ===
+                                    'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}
+                            >
+                                {message}
+                            </div>
+                        )}
+
                         <h1 className='text-[30px] text-center font-bold'>
                             Login
                         </h1>

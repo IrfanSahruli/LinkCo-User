@@ -6,9 +6,9 @@ import Register from './pages/Auth/Register';
 import HomePage from './pages/HomePage/HomePage';
 import DetailProduct from './pages/Product/[id]/DetailProduct';
 import Profile from './pages/Profile/Profile';
-import Kyc from './pages/KnowYourCustomer/Kyc';
 import ProductList from './pages/Product/Product';
 import Order from './pages/Order/Order';
+import KycData from './pages/KnowYourCustomer/KycData';
 
 function App() {
   return (
@@ -48,10 +48,10 @@ function App() {
             }
           />
           <Route
-            path='/kyc'
+            path='/kycdata'
             element={
               <>
-                <Kyc />
+                <KycData />
               </>
             }
           />

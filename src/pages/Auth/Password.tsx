@@ -9,6 +9,8 @@ const Password = () => {
     const user = getUserData();
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
     const [error, setError] = useState('');
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -35,15 +37,18 @@ const Password = () => {
                 { withCredentials: true }
             );
 
-            alert(res.data.message);
+            setMessage(res.data.message);
+            setMessageType('success');
             localStorage.removeItem('dataUser');
             navigate('/login');
         } catch (error) {
             if (isAxiosError(error)) {
-                const message = error.response?.data?.message || 'Terjadi kesalahan saat login';
-                alert(`Register gagal: ${message}`);
+                const msg = error.response?.data?.message || 'Terjadi kesalahan saat login';
+                setMessage(msg);
+                setMessageType('error');
             } else {
-                alert('Terjadi kesalahan tak terduga');
+                setMessage('Terjadi kesalahan tak terduga');
+                setMessageType('error');
             }
         }
     };
@@ -59,10 +64,18 @@ const Password = () => {
                 </div>
 
                 <div className='flex justify-center mt-[50px] md:mt-[90px]'>
-                    <form
-                        onSubmit={handleSubmit}
+                    <div
                         className='bg-white rounded-t-4xl h-[530px] w-full px-8 py-8 md:py-6 md:rounded-4xl md:h-[470px] md:w-[500px]'
                     >
+                        {message && (
+                            <div
+                                className={`text-sm mb-4 px-4 py-2 rounded-lg font-medium ${messageType ===
+                                    'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}
+                            >
+                                {message}
+                            </div>
+                        )}
+
                         <div className='flex justify-center'>
                             <h1 className='text-[30px] text-center font-bold'>Password</h1>
                             <GiPadlock className='mt-[10px] ml-1 w-[24px] h-[24px]' />
@@ -71,7 +84,12 @@ const Password = () => {
                             Mohon konfirmasi password anda
                         </p>
                         <div className='flex flex-col mt-10'>
-                            <label htmlFor="password" className='text-[18px] font-semibold'>Password</label>
+                            <label
+                                htmlFor="password"
+                                className='text-[18px] font-semibold'
+                            >
+                                Password
+                            </label>
                             <input
                                 type="password"
                                 placeholder='Password...'
@@ -81,7 +99,12 @@ const Password = () => {
                             />
                         </div>
                         <div className='flex flex-col mt-4'>
-                            <label htmlFor="confirmPassword" className='text-[18px] font-semibold'>Konfirmasi Password</label>
+                            <label
+                                htmlFor="confirmPassword"
+                                className='text-[18px] font-semibold'
+                            >
+                                Konfirmasi Password
+                            </label>
                             <input
                                 type="password"
                                 placeholder='Konfirmasi password...'
@@ -98,8 +121,12 @@ const Password = () => {
                         )}
 
                         <div className='mt-10 flex justify-center'>
-                            <button type='submit' className='bg-blue-950 rounded-4xl w-[360px] md:w-[200px] h-[43px]'>
-                                <p className='font-semibold text-[18px] text-white'>Konfirmasi</p>
+                            <button
+                                onClick={handleSubmit}
+                                className='bg-blue-950 rounded-4xl w-[360px] md:w-[200px] h-[43px] font-semibold 
+                                text-[18px] text-white'
+                            >
+                                Konfirmasi
                             </button>
                         </div>
 
@@ -111,7 +138,7 @@ const Password = () => {
                                 </Link>
                             </span>
                         </p>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

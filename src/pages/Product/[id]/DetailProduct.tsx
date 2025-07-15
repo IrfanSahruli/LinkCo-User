@@ -10,24 +10,36 @@ const DetailProduct = () => {
     const { id } = useParams();
     const [product, setProduct] = useState<Product>();
     const [isExpanded, setIsExpanded] = useState(false);
+    const [message, setMessage] = useState('');
+    const [messageType, setMessageType] = useState<'success' | 'error' | ''>('');
 
     useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                if (id) {
-                    const res = await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/api/getOneProduct/${id}`);
-                    console.log(res);
-                    setProduct(res.data.data);
-                }
-            } catch (error) {
-                if (isAxiosError(error)) {
-                    console.error(`Error: ${error.response?.data}`);
-                }
-            }
-        };
-
+        checkAuth();
         fetchProduct();
     }, []);
+
+    const checkAuth = async () => {
+        try {
+            await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/api/getMe`,
+                { withCredentials: true }
+            );
+        } catch {
+            navigate('/login');
+        }
+    };
+
+    const fetchProduct = async () => {
+        try {
+            if (id) {
+                const res = await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/api/getOneProduct/${id}`);
+                setProduct(res.data.data);
+            }
+        } catch (error) {
+            if (isAxiosError(error)) {
+                console.error(`Error: ${error.response?.data}`);
+            }
+        }
+    };
 
     const handleOrder = async () => {
         if (product) {
@@ -45,11 +57,17 @@ const DetailProduct = () => {
                 { withCredentials: true }
             );
             saveOrderData(res.data.data);
-            alert(res.data.message);
+            setMessage(res.data.message);
+            setMessageType('success');
             navigate('/order');
         } catch (error) {
             if (isAxiosError(error)) {
-                console.error(`Error: ${error.response?.data}`);
+                const msg = error.response?.data?.message || 'Terjadi kesalahan saat login';
+                setMessage(msg);
+                setMessageType('error');
+            } else {
+                setMessage('Terjadi kesalahan tak terduga');
+                setMessageType('error');
             }
         }
     };
@@ -61,6 +79,14 @@ const DetailProduct = () => {
     return (
         <div className='bg-white'>
             <Navbar />
+            {message && (
+                <div
+                    className={`text-sm mb-4 px-4 py-2 rounded-lg font-medium ${messageType ===
+                        'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}
+                >
+                    {message}
+                </div>
+            )}
             {product && (
                 <div className='px-6 pt-26'>
                     <div className='grid grid-cols-1 rounded-2xl shadow-2xl mb-4'>

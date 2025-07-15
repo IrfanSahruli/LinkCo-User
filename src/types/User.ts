@@ -4,7 +4,21 @@ export interface Affiliate {
     referral: string;
     referralCode: string;
     referralBy: number;
-}
+};
+
+export interface Kyc {
+    id?: number;
+    userId?: number;
+    fullName?: string;
+    nik?: string;
+    placeOfBirth?: string;
+    dateOfBirth?: string;
+    address?: string;
+    ktpPhoto?: string;
+    selfiePhoto?: string;
+    status?: string;
+    rejectedReason?: string;
+};
 
 export interface User {
     id?: number;
@@ -15,5 +29,6 @@ export interface User {
     referralCode?: string;
     affiliate?: Affiliate;
     saldo?: number;
+    isKYCApproved?: boolean;
     role?: string;
 };
