@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }: { product: Product }) => {
     return (
-        <Link to={`/product/${product.id}`}>
-            <div className="w-[320px] bg-white rounded-2xl shadow-md flex flex-col overflow-hidden">
+        <div className="w-[320px] bg-white rounded-2xl shadow-md flex flex-col overflow-hidden">
+            <Link to={`/product/${product.id}`}>
                 <div className="h-[170px] w-full overflow-hidden rounded-t-2xl">
                     <img
                         src={`${import.meta.env.VITE_PUBLIC_URL}${product.imageUrl}`}
@@ -25,17 +25,18 @@ const ProductCard = ({ product }: { product: Product }) => {
                     <p className="text-blue-950 font-bold mt-1 text-sm">
                         Rp {Number(product.price).toLocaleString('id-ID')}
                     </p>
-                    <a
-                        href={product.linkProduct}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-auto text-center bg-blue-950 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-lg transition"
-                    >
-                        Pesan
-                    </a>
                 </div>
-            </div>
-        </Link>
+            </Link>
+
+            <a
+                href={product.linkProduct}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 mx-4 mb-4 text-center bg-blue-950 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-lg transition"
+            >
+                Pesan
+            </a>
+        </div>
     );
 };
 

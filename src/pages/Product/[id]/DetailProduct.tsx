@@ -62,8 +62,7 @@ const DetailProduct = () => {
         <div className='bg-white'>
             <Navbar />
             {product && (
-                <div className='px-8 pt-26'>
-
+                <div className='px-6 pt-26'>
                     <div className='grid grid-cols-1 rounded-2xl shadow-2xl mb-4'>
                         <div>
                             <img

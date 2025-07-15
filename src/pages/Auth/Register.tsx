@@ -123,7 +123,7 @@ const Register = () => {
                         <p className='text-center mt-4 mb-16'>
                             Sudah punya akun?
                             <span className='ml-1 text-blue-950 font-semibold'>
-                                <Link to={`/`}>
+                                <Link to={`/login`}>
                                     Masuk
                                 </Link>
                             </span>

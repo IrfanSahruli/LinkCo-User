@@ -26,7 +26,7 @@ const ProductList = () => {
     return (
         <div className='bg-white'>
             <Navbar />
-            <div className='grid grid-cols-1 md:grid-cols-4 justify-items-center pt-28 md:pt-18 px-8 py-6 md:px-12 
+            <div className='grid grid-cols-1 md:grid-cols-4 justify-items-center pt-28 md:pt-18 px-6 py-6 md:px-12 
                 gap-x-4 gap-y-6'
             >
                 {products.map((product, index) => (

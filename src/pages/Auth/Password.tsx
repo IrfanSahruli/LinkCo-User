@@ -106,7 +106,9 @@ const Password = () => {
                         <p className='text-center mt-4'>
                             Sudah punya akun?
                             <span className='ml-1 text-blue-950 font-semibold'>
-                                <Link to={`/`}>Masuk</Link>
+                                <Link to={`/login`}>
+                                    Masuk
+                                </Link>
                             </span>
                         </p>
                     </form>

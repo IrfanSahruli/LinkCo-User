@@ -28,13 +28,13 @@ const HomePage = () => {
     return (
         <div className='bg-white'>
             <Navbar />
-            <div className='pt-16 md:pt-6 px-8'>
+            <div className='pt-16 md:pt-6 px-6'>
                 <CarouselSwiper />
             </div>
             <h1 className='text-[30px] text-blue-950 text-center font-extrabold pt-[30px]'>
                 Rekomendasi Produk
             </h1>
-            <div className='grid grid-cols-1 justify-items-center md:grid-cols-4 px-14 py-6 md:px-12 gap-x-4 
+            <div className='grid grid-cols-1 justify-items-center md:grid-cols-4 px-6 py-6 md:px-12 gap-x-4 
                 gap-y-6'
             >
                 {products.map((product, index) => (
