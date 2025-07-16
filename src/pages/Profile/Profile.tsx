@@ -3,10 +3,12 @@ import { FiUser, FiCopy, FiUpload } from 'react-icons/fi';
 import Navbar from '../../components/Navbar';
 import { User } from '../../types/User';
 import axios, { isAxiosError } from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Profile = () => {
+    const navigate = useNavigate();
     const [user, setUser] = useState<User>();
+    const [copied, setCopied] = useState(false);
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -25,6 +27,31 @@ const Profile = () => {
 
         fetchUser();
     }, []);
+
+    const handleCopyReferral = () => {
+        if (user?.affiliate?.referral) {
+            navigator.clipboard.writeText(user.affiliate.referral)
+                .then(() => {
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 2000);
+                })
+                .catch(err => {
+                    console.error('Gagal menyalin kode:', err);
+                });
+        }
+    };
+
+    const handleWithdrawClick = () => {
+        try {
+            if (!user?.isKYCApproved) {
+                alert('Mohon verifikasi data diri terlebih dahulu!');
+                return;
+            }
+            navigate('/withdraw')
+        } catch (error) {
+            console.error(`Error: ${error}`);
+        }
+    };
 
     return (
         <div className="bg-white">
@@ -52,12 +79,20 @@ const Profile = () => {
                                     </Link>
                                 )}
                                 <div className="flex items-center justify-between mt-3">
-                                    <div className="flex items-center border border-gray-500 rounded-lg px-3 py-1 gap-5">
+                                    <div className="relative flex items-center border border-gray-500 rounded-lg px-3 py-1 gap-5">
                                         <div>
                                             <p className="text-[14px] text-gray-700">Referral:</p>
                                             <p className="text-[18px] font-semibold text-gray-900">{user?.affiliate?.referral}</p>
                                         </div>
-                                        <FiCopy className="w-5 h-5 text-gray-600 cursor-pointer hover:text-black" />
+                                        <FiCopy
+                                            onClick={handleCopyReferral}
+                                            className="w-5 h-5 text-gray-600 cursor-pointer hover:text-black"
+                                        />
+                                        {copied && (
+                                            <span className="absolute -bottom-6 left-0 mb-2 text-xs text-green-600">
+                                                Berhasil disalin ke papan klip
+                                            </span>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -72,15 +107,20 @@ const Profile = () => {
                                     <p className="text-sm">Minimal penarikan: Rp. 50.000</p>
                                 </div>
 
-                                <button className="bg-blue-900 hover:bg-blue-950 text-white p-3 rounded-2xl">
+                                <button
+                                    onClick={handleWithdrawClick}
+                                    className="bg-blue-900 hover:bg-blue-950 text-white p-3 rounded-2xl"
+                                >
                                     <FiUpload className="w-8 h-8" />
                                 </button>
                             </div>
 
                             <div className="flex justify-center">
-                                <button className="mt-4 text-sm hover:text-blue-900 font-semibold">
-                                    Riwayat Penarikan
-                                </button>
+                                <Link to={'/historywithdraw'}>
+                                    <button className="mt-4 text-sm hover:text-blue-900 font-semibold">
+                                        Riwayat Penarikan
+                                    </button>
+                                </Link>
                             </div>
                         </div>
                     </div>

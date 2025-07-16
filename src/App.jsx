@@ -9,6 +9,8 @@ import Profile from './pages/Profile/Profile';
 import ProductList from './pages/Product/Product';
 import Order from './pages/Order/Order';
 import KycData from './pages/KnowYourCustomer/KycData';
+import RequestWithdraw from './pages/Withdraw/RequestWithdraw';
+import WithdrawHistory from './pages/Withdraw/WithdrawHistory';
 
 function App() {
   return (
@@ -84,6 +86,22 @@ function App() {
             element={
               <>
                 <Profile />
+              </>
+            }
+          />
+          <Route
+            path='/withdraw'
+            element={
+              <>
+                <RequestWithdraw />
+              </>
+            }
+          />
+          <Route
+            path='/historywithdraw'
+            element={
+              <>
+                <WithdrawHistory />
               </>
             }
           />

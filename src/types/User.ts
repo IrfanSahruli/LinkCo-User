@@ -20,6 +20,17 @@ export interface Kyc {
     rejectedReason?: string;
 };
 
+export interface Withdraw {
+    id?: number;
+    userId?: number;
+    withdrawTo?: string;
+    noRekening?: string;
+    totalWithdraw?: number | string;
+    selfiePhoto?: string;
+    status?: string;
+    rejectedReason?: string
+};
+
 export interface User {
     id?: number;
     name?: string;

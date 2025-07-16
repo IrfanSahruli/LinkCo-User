@@ -19,7 +19,9 @@ const Order = () => {
         <div className="bg-white min-h-screen">
             <Navbar />
             <div className="px-4 md:px-8 pt-[210px] flex justify-center">
-                <div className="bg-white rounded-2xl shadow-xl border border-gray-200 max-w-xl w-full p-8 text-center space-y-6">
+                <div className="bg-white rounded-2xl shadow-xl border border-gray-200 max-w-xl w-full p-8 
+                    text-center space-y-6"
+                >
                     {/* Icon */}
                     <div className="flex justify-center">
                         <div className="bg-blue-100 text-blue-800 rounded-full p-4">
