@@ -3,69 +3,56 @@ import Navbar from '../../components/Navbar';
 import { Withdraw } from '../../types/User';
 import axios, { isAxiosError } from 'axios';
 
+type HistoryItem = {
+    type: 'masuk' | 'keluar';
+    amount: number;
+    createdAt: string;
+};
+
 const WithdrawHistory = () => {
+    const [history, setHistory] = useState<HistoryItem[]>([]);
     const [withdraws, setWithdraws] = useState<Withdraw[]>([]);
     const [status, setStatus] = useState<'all' | 'pending' | 'approved'>('all');
 
     useEffect(() => {
-        const fetchMyWithdraws = async () => {
+        const fetchBalanceHistory = async () => {
             try {
-                const query = status !== 'all' ? `?status=${status}` : '';
-                const res = await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/api/getMyWithdraw/${query}`,
-                    { withCredentials: true }
-                );
-                setWithdraws(res.data.data);
+                const res = await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/api/getMyHistory`, {
+                    withCredentials: true
+                });
+                console.log(res);
+
+                setHistory(res.data.data);
             } catch (error) {
-                if (isAxiosError(error)) {
-                    console.error(error.response?.data);
-                }
+                console.error(error);
             }
         };
 
-        fetchMyWithdraws();
-    }, [status]);
+        fetchBalanceHistory();
+    }, []);
 
     return (
         <div className='bg-white min-h-screen'>
             <Navbar />
             <div className='flex justify-center px-6 pt-[100px]'>
                 <div className='bg-white rounded-2xl shadow-xl border border-gray-200 max-w-xl w-full p-6'>
-                    {/* Filter Tetap di Atas */}
-                    <div className='flex border-b space-x-10 justify-center pb-4 sticky top-[100px] bg-white z-10'>
-                        <button
-                            onClick={() => setStatus('all')}
-                            className={`text-[18px] ${status === 'all' ? 'font-bold text-blue-950' : ''}`}
-                        >
-                            Semua
-                        </button>
-                        <button
-                            onClick={() => setStatus('pending')}
-                            className={`text-[18px] ${status === 'pending' ? 'font-bold text-blue-950' : ''}`}
-                        >
-                            Proses
-                        </button>
-                        <button
-                            onClick={() => setStatus('approved')}
-                            className={`text-[18px] ${status === 'approved' ? 'font-bold text-blue-950' : ''}`}
-                        >
-                            Selesai
-                        </button>
-                    </div>
-
+                    <h1 className='text-center font-semibold text-blue-950 text-[23px] mb-2 border-b py-2'>
+                        Riwayat Affiliasi
+                    </h1>
                     {/* Scrollable Card Section */}
                     <div className='max-h-[490px] overflow-y-auto mt-4 pr-1'>
-                        {withdraws.map((withdraw, index) => (
-                            <div key={index} className='flex flex-col border rounded-xl w-full px-4 py-2 mb-4'>
-                                <div className='flex justify-between'>
-                                    <h1 className='font-semibold'>Penarikan</h1>
-                                    <p className='text-sm'>
-                                        Status: <span className='capitalize'>{withdraw?.status}</span>
+                        {history.map((item, index) => (
+                            <div key={index} className='flex justify-between border p-4 rounded-xl mb-3 bg-gray-50'>
+                                <div>
+                                    <p className='font-medium'>
+                                        {item.type === 'masuk' ? 'Penambahan Saldo (Komisi)' : 'Pengurangan Saldo (Withdraw)'}
+                                    </p>
+                                    <p className='text-sm text-gray-500'>
+                                        {new Date(item.createdAt)?.toLocaleString('id-ID')}
                                     </p>
                                 </div>
-                                <div className='mt-2 text-sm'>
-                                    <p>Bank/E-Wallet: <span className='font-medium'>{withdraw?.withdrawTo}</span></p>
-                                    <p>No rekening: <span className='font-medium'>{withdraw?.noRekening}</span></p>
-                                    <p>Total penarikan: <span className='font-medium'>Rp {withdraw?.totalWithdraw?.toLocaleString('id-ID')}</span></p>
+                                <div className={`font-bold ${item.type === 'masuk' ? 'text-green-600' : 'text-red-600'}`}>
+                                    {item.type === 'masuk' ? '+' : '-'} Rp {item.amount != null ? item.amount.toLocaleString('id-ID') : '0'}
                                 </div>
                             </div>
                         ))}
