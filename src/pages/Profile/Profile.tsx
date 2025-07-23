@@ -141,6 +141,9 @@ const Profile = () => {
                 )}
             </div>
             <div className='mt-6 px-6'>
+                <h3 className='text-center font-bold text-[23px] text-blue-950 mb-2'>
+                    Relasi Affiliasi Anda
+                </h3>
                 {affiliations[0]?.children.map((relasi1: any) => (
                     <RelationTable key={relasi1.userId} rootUser={relasi1} />
                 ))}
