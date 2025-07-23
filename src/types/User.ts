@@ -6,6 +6,14 @@ export interface Affiliate {
     referralBy: number;
 };
 
+export interface RelationUser {
+    userId: number;
+    name: string;
+    email: string;
+    relationLevel: number;
+    children: RelationUser[];
+};
+
 export interface Kyc {
     id?: number;
     userId?: number;

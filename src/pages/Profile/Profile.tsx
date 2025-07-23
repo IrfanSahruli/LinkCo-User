@@ -4,29 +4,43 @@ import Navbar from '../../components/Navbar';
 import { User } from '../../types/User';
 import axios, { isAxiosError } from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import RelationTable from '../../components/RelationTable';
 
 const Profile = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState<User>();
     const [copied, setCopied] = useState(false);
+    const [affiliations, setAffiliations] = useState<any[]>([]);
 
     useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const res = await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/api/getMe`,
-                    { withCredentials: true }
-                );
-                console.log(res);
-                setUser(res.data.data);
-            } catch (error) {
-                if (isAxiosError(error)) {
-                    console.error(`Error: ${error.response?.data.message}`);
-                }
-            }
-        };
-
         fetchUser();
+        fetchAffiliations();
     }, []);
+
+    const fetchUser = async () => {
+        try {
+            const res = await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/api/getMe`,
+                { withCredentials: true }
+            );
+            console.log(res);
+            setUser(res.data.data);
+        } catch (error) {
+            if (isAxiosError(error)) {
+                console.error(`Error: ${error.response?.data.message}`);
+            }
+        }
+    };
+
+    const fetchAffiliations = async () => {
+        try {
+            const res = await axios.get(`${import.meta.env.VITE_PUBLIC_URL}/api/getAffiliate`, {
+                withCredentials: true
+            });
+            setAffiliations(res.data.data);
+        } catch (error) {
+            console.error('Gagal ambil relasi:', error);
+        }
+    };
 
     const handleCopyReferral = () => {
         if (user?.affiliate?.referral) {
@@ -125,6 +139,11 @@ const Profile = () => {
                         </div>
                     </div>
                 )}
+            </div>
+            <div className='mt-6 px-6'>
+                {affiliations[0]?.children.map((relasi1: any) => (
+                    <RelationTable key={relasi1.userId} rootUser={relasi1} />
+                ))}
             </div>
         </div>
     );
