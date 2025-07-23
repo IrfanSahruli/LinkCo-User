@@ -5,7 +5,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-const images = ['LinkcoBenefit.jpg', 'kopigayo.jpg', 'kopigayo.jpg'];
+const images = ['LinkcoBenefit2.jpg', 'LinkcoBenefit.jpg', 'kopigayo.jpg'];
 
 const CarouselSwiper = () => {
     return (
